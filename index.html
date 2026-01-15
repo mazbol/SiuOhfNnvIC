@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movie Trailer</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* ===== HERO VIDEO ===== */
+.hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+#player {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 120%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        rgba(0,0,0,0.4),
+        rgba(0,0,0,0.9)
+    );
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    letter-spacing: 3px;
+}
+
+.hero p {
+    max-width: 600px;
+    margin-top: 15px;
+    color: #ccc;
+}
+
+.buttons {
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 12px 28px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.btn-red {
+    background: #e50914;
+    color: #fff;
+}
+
+.btn-dark {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+}
+
+.btn-ads {
+    background: #ffc107;
+    color: #000;
+}
+
+.btn-ads:hover {
+    background: #ffca2c;
+}
+
+
+/* ===== TRAILER SECTION ===== */
+.trailer {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.trailer h2 {
+    margin-bottom: 20px;
+}
+
+.trailer iframe {
+    width: 100%;
+    max-width: 900px;
+    height: 500px;
+    border-radius: 10px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    padding: 30px;
+    text-align: center;
+    color: #666;
+}
+</style>
+</head>
+<body>
+
+<!-- HERO BACKGROUND VIDEO -->
+<section class="hero">
+    <div id="player"></div>
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+        <h1>THE LAST SHADOW</h1>
+        <p>Sebuah film action thriller yang penuh misteri dan pengkhianatan.</p>
+
+        <div class="buttons">
+    
+    <button class="btn btn-red" onclick="openAd()">🎬 Watch Trailer</button>
+    <button class="btn btn-ads" onclick="openAd()">🔥 Watch Full Movie</button>
+</div>
+    </div>
+</section>
+
+
+
+<footer>
+    © 2026 The Last Shadow
+</footer>
+
+<!-- YOUTUBE API -->
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+let player;
+
+/* BACKGROUND VIDEO PLAYER */
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+        videoId: 'lfhc4QVmNMk',
+        playerVars: {
+            autoplay: 1,
+            mute: 1,
+            controls: 0,
+            showinfo: 0,
+            modestbranding: 1,
+            loop: 1,
+            playlist: 'lfhc4QVmNMk',
+            playsinline: 1
+        }
+    });
+}
+
+
+
+/* AUTOPLAY TRAILER ON SCROLL */
+const trailer = document.getElementById("trailerVideo");
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            trailer.src += "&autoplay=1";
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.6 });
+
+observer.observe(trailer);
+</script>
+
+<script>
+function openAd() {
+    window.open(
+        "https://laxativethem.com/e1ncxqxb?key=d8db733fcde967c2948ab4d7ad8f294d",
+        "_blank"
+    );
+}
+</script>
+
+
+</body>
+</html>
